@@ -1,0 +1,30 @@
+.Restaurantcard .image{
+    background: url("https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/e0839ff574213e6f35b3899ebf1fc597");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 216px;
+    display: flex;
+    /* justify-content: center; */
+    padding-left: 20px;
+    /* position: relative; */
+
+    align-items: end;
+    /* border-radius: 38px; */
+    border-radius: 26px;
+}
+.Restaurantcard .image h1{
+    /* position: absolute; */
+    /* bottom: 0; */
+    color: white;
+    font-size: 30px;
+    text-shadow: 2px 2px black;
+    /* font-weight: bold; */
+}
+.Restaurantcard{
+    width:286px;
+}
+.Restaurantcard:hover{
+    transform: scale(1.03);
+    cursor: pointer;
+}

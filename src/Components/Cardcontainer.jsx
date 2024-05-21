@@ -2,8 +2,7 @@ import Restaurantcard from "./Restaurantcard"
 
 const Cardcontainer = () => {
   return (
-    <>
-        <p className="text-center">This is Card container</p>
+    <div className="container d-flex flex-wrap gap-5 justify-content-center">
         <Restaurantcard/>
         <Restaurantcard/>
         <Restaurantcard/>
@@ -11,7 +10,7 @@ const Cardcontainer = () => {
         <Restaurantcard/>
         <Restaurantcard/>
         <Restaurantcard/>
-    </>
+    </div>
   )
 }
 

@@ -1,7 +1,7 @@
 const Footer=()=>{
     return(
         <>
-            <div className="Footer bg-dark p-2 position-absolute bottom-0 w-100 text-white d-flex justify-content-around align-items-center">
+            <div className="Footer bg-dark p-2 w-100 text-white d-flex justify-content-around align-items-center">
                 <div className="text-start">
                     <h3>Eat-Fit</h3>
                     <p className="text-light">eat-fit@gmail.com</p>
