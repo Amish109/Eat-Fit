@@ -1,17 +1,17 @@
-const Restaurantcard=()=>{
-    return(
-        <div className="Restaurantcard mb-4">
-            <div className="image">
-                {/* <img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/e0839ff574213e6f35b3899ebf1fc597" alt="" className="w-100" style={{height:"250px"}}/> */}
-                <h1>ITEMS AT ₹179</h1>
+const Restaurantcard=({imageURL,title,starRating,deliveryTime,cuisine,address})=>{
+        //imageURL , title,starRating,deliveryTime,cuisine,address
+        return(
+            <div className="Restaurantcard mb-4">
+                <div className="image"  style={{background:`url(${imageURL})`,backgroundPosition:"center",backgroundRepeat: "no-repeat",backgroundSize:"cover",height:"216px",display:"flex",paddingLeft:"20px",alignItems:"end",borderRadius:"26px"}}>
+                    <h1>ITEMS AT ₹179</h1>
+                </div>
+                <div className="content px-2">
+                    <h4>{title}</h4>
+                    <div className="d-flex justify-content-between"><span>⭐{starRating}</span> <span>{deliveryTime}</span></div>
+                    <div>{cuisine}</div>
+                    <p>{address}</p>
+                </div>
             </div>
-            <div className="content px-2">
-                <h4>Chinese Wok</h4>
-                <div className="d-flex justify-content-between"><span>⭐4.3</span> <span>25-30 mins</span></div>
-                <div>Chinese, Asian, Tibetan, Desserts</div>
-                <p>Santacruz East</p>
-            </div>
-        </div>
-    )
-}
-export default Restaurantcard
+        )
+    }
+    export default Restaurantcard
