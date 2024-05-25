@@ -1,7 +1,7 @@
 import Carousel from "./Carousel.jsx"
 import Filters from "./Filters.jsx"
 import Searchbar from "./Searchbar.jsx"
-import Cardcontainer from "./Cardcontainer"
+import CardContainer from "./CardContainer"
 
 const Body=()=>{
     return(
@@ -12,7 +12,7 @@ const Body=()=>{
                 <Filters/>
                 <Searchbar/>
             </div>
-            <Cardcontainer/>
+            <CardContainer/>
 
         </>
     )
