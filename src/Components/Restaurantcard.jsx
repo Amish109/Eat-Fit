@@ -16,9 +16,6 @@ const Restaurantcard=({areaName,avgRating,cuisines,name,sla,cloudinaryImageId})=
     )
 }
 export default Restaurantcard
-
-
-
 // const Restaurantcard=({imageURL,title,starRating,deliveryTime,cuisine,address})=>{
 //         //imageURL , title,starRating,deliveryTime,cuisine,address
 //         return(

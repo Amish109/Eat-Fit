@@ -1,26 +1,38 @@
 import RestaurantCard from "./RestaurantCard";
 import { restaurantList } from "../constants/restaurants";
+import { useState } from "react";
 const CardContainer = () => {
- 
-  // let {card:{card:{gridElements:{infoWithStyle:{restaurants}}}}}=restaurantList[1];
   let {card:{card:{gridElements:{infoWithStyle:{restaurants}}}}}=restaurantList[1]
+ const [restaurantData,setRestaurantData]=useState(restaurants)
+  // let {card:{card:{gridElements:{infoWithStyle:{restaurants}}}}}=restaurantList[1];
+  const filterData=()=>{
+    const filteredData=restaurants.filter((restaurant)=>{
+      return restaurant.info.avgRating>=4.5
+    })
+    setRestaurantData(filteredData);
+    console.log(filteredData)
+
+  }
   return (
     // <div className="container "style={{display:"grid",gridTemplateColumns:"repeat(4,1fr)"}}>
-    <div className="container d-flex flex-wrap gap-5 ">
-      {
-        console.log(restaurants)
-      }
-      {
-        //justify-content-center
-    //   console.log(restaurants)
-      restaurants.map((restaurant,index)=>{
-          return(
-            <RestaurantCard key={restaurant.info.id} {...restaurant.info}/>
-            // <Restaurantcard imageURL={restaurant.imageURL} title={restaurant.title} starRating={restaurant.starRating} deliveryTime={restaurant.deliveryTime} cuisine={restaurant.cuisine} address={restaurant.address}/>
-          )
-        })
-      }
-    </div>
+    <>
+      <button className="btn btn-primary btn-sm ms-2" onClick={filterData}>Top Rated</button>
+      <div className="container d-flex flex-wrap gap-5 ">
+        {
+          // console.log(restaurants);
+        }
+        {
+          //justify-content-center
+      //   console.log(restaurants)
+      restaurantData.map((restaurant,index)=>{
+            return(
+              <RestaurantCard key={restaurant.info.id} {...restaurant.info}/>
+              // <Restaurantcard imageURL={restaurant.imageURL} title={restaurant.title} starRating={restaurant.starRating} deliveryTime={restaurant.deliveryTime} cuisine={restaurant.cuisine} address={restaurant.address}/>
+            )
+          })
+        }
+      </div>
+    </>
   )
 }
 export default CardContainer
