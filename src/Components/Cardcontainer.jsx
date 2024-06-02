@@ -1,7 +1,16 @@
 import RestaurantCard from "./RestaurantCard";
 import { restaurantList } from "../constants/restaurants";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 const CardContainer = () => {
+  const ApiCall =async()=>{
+    const response = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=19.07480&lng=72.88560&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING",{
+     header:{
+     "Content-Type:":"application/json; charset=utf-8"
+     }
+    })
+    const data =await response.json();
+    console.log('ApiCallData',data)
+  }
   let {card:{card:{gridElements:{infoWithStyle:{restaurants}}}}}=restaurantList[1]
  const [restaurantData,setRestaurantData]=useState(restaurants)
   // let {card:{card:{gridElements:{infoWithStyle:{restaurants}}}}}=restaurantList[1];
@@ -13,6 +22,11 @@ const CardContainer = () => {
     console.log(filteredData)
 
   }
+  // ApiCall()
+  useEffect(()=>{
+    ApiCall()
+  },[])
+
   return (
     // <div className="container "style={{display:"grid",gridTemplateColumns:"repeat(4,1fr)"}}>
     <>
