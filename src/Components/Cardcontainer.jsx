@@ -14,7 +14,8 @@ const CardContainer = () => {
      }
     })
     const data =await response.json();
-    console.log(data.data.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+    console.log("data from Api",data)
+    console.log(data.data.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
     setRestaurantData(data.data.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
     setStoredData(data.data.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
     setLoadingStatus(false);
@@ -37,8 +38,8 @@ const CardContainer = () => {
     ApiCall()
   },[])
   //  or we can even make an if else condition here and make an alternate return statement for onloading
-
-
+// Test on shimmer effect animation
+// New
   return (
     // <div className="container "style={{display:"grid",gridTemplateColumns:"repeat(4,1fr)"}}>
     <div>
@@ -56,11 +57,11 @@ const CardContainer = () => {
           new Array(20).fill(0).map((element,index)=>{
             return <Shimmer key={index}/>
           }):
-      restaurantData.map((restaurant,index)=>{
+      restaurantData?restaurantData.map((restaurant,index)=>{
             return(
               <RestaurantCard key={restaurant.info.id} {...restaurant.info}/>
             )
-          })
+          }):""
         }
       </div>
     </div>

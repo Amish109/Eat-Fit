@@ -31,17 +31,17 @@
 }
 
 .ShimmerCard .ShimmerImg{
-    background-color: rgb(190 189 189);
-    /* background-color: rgb(236, 231, 231); */
+    /* background-color: rgb(190 189 189); */
+    background-color: rgb(236, 231, 231);
 }
 .ShimmerCard .ShimmerText{
-    background-color: rgb(190 189 189);
-    /* background-color: rgb(236, 231, 231); */
+    /* background-color: rgb(190 189 189); */
+    background-color: rgb(236, 231, 231);
     height: 25px;
 }
 .ShimmerCard .ShimmerTextSPan{
-    background-color: rgb(190 189 189);
-    /* background-color: rgb(236, 231, 231); */
+    /* background-color: rgb(190 189 189); */
+    background-color: rgb(236, 231, 231);
     height: 25px;
     width: 30%;
     margin-top:10px ;
