@@ -7,18 +7,25 @@ const CardContainer = () => {
  const [restaurantData,setRestaurantData]=useState([]);
  const [textData,updateTextData]=useState("");
  const [loadingStatus,setLoadingStatus]=useState(true);
+ const [error,setError]=useState(false);
   const ApiCall =async()=>{
-    const response = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=19.07480&lng=72.88560&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING",{
-     header:{
-     "Content-Type:":"application/json; charset=utf-8"
-     }
-    })
-    const data =await response.json();
-    console.log("data from Api",data)
-    console.log(data.data.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
-    setRestaurantData(data.data.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-    setStoredData(data.data.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-    setLoadingStatus(false);
+    try {
+      const response = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=19.07480&lng=72.88560&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING",{
+       header:{
+       "Content-Type:":"application/json; charset=utf-8"
+       }
+      })
+     
+      const data =await response.json();
+      console.log("response from Api",response);
+      console.log("data from Api",data);
+      console.log(data.data.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+      setRestaurantData(data.data.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+      setStoredData(data.data.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+      setLoadingStatus(false);
+    } catch (error) {
+      setError(true)
+    }
   }
   // let {card:{card:{gridElements:{infoWithStyle:{restaurants}}}}}=restaurantList[1];
   const filterData=()=>{
@@ -40,6 +47,11 @@ const CardContainer = () => {
   //  or we can even make an if else condition here and make an alternate return statement for onloading
 // Test on shimmer effect animation
 // New
+if(error){
+  return(
+    <h1 style={{color:"red",height:"50.66dvh"}}>Something Went Wrong..</h1>
+  )
+}
   return (
     // <div className="container "style={{display:"grid",gridTemplateColumns:"repeat(4,1fr)"}}>
     <div>
