@@ -19,9 +19,9 @@ const CardContainer = () => {
       const data =await response.json();
       console.log("response from Api",response);
       console.log("data from Api",data);
-      console.log(data.data.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
-      setRestaurantData(data.data.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-      setStoredData(data.data.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+      console.log(data.data.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+      setRestaurantData(data.data.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+      setStoredData(data.data.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
       setLoadingStatus(false);
     } catch (error) {
       setError(true)
