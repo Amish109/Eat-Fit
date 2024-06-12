@@ -2,7 +2,7 @@ import Carousel from "./Carousel.jsx"
 import Filters from "./Filters.jsx"
 import Searchbar from "./Searchbar.jsx"
 // import CardContainer from "./CardContainer"
-import CardContainer from "./Cardcontainer.jsx"
+import CardContainer from "./Cardcontainer"
 
 const Body=()=>{
     return(

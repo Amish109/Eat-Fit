@@ -1,4 +1,4 @@
-import RestaurantCard from "./RestaurantCard";
+import Restaurantcard from "./RestaurantCard";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 const CardContainer = () => {
@@ -71,7 +71,7 @@ if(error){
           }):
       restaurantData?restaurantData.map((restaurant,index)=>{
             return(
-              <RestaurantCard key={restaurant.info.id} {...restaurant.info}/>
+              <Restaurantcard key={restaurant.info.id} {...restaurant.info}/>
             )
           }):""
         }
