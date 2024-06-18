@@ -54,15 +54,15 @@ if(error){
 }
   return (
     // <div className="container "style={{display:"grid",gridTemplateColumns:"repeat(4,1fr)"}}>
-    <div>
+    <div className="CardContainer">
       <div className="container mb-3 d-flex justify-content-between">
         <div>
-          <input type="text" value={textData} onChange={(event)=>{updateTextData(event.target.value)}} onKeyUp={searchData} placeholder="Search.." className="border border-dark p-2 col-md-8" style={{borderRadius:'20px',width:'500px'}} />
+          <input type="text" value={textData} onChange={(event)=>{updateTextData(event.target.value)}}  placeholder="Search.." className="border border-dark p-2 col-md-8" style={{borderRadius:'20px',width:'500px'}} />
           <button className="btn btn-primary btn-sm ms-2" onClick={searchData}>Search</button>
         </div>
         <button className="btn btn-primary btn-sm ms-2" onClick={filterData}>Top Rated</button>
       </div>
-      <div className="container d-flex flex-wrap gap-5 ">
+      <div className="container divContainer d-flex flex-wrap gap-2 p-0 justify-content-center">
        
         {
           loadingStatus?

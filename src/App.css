@@ -47,3 +47,32 @@
     margin-top:10px ;
     margin-bottom: 10px;
 }
+
+@media (max-width:800px) {
+
+    .Restaurantcard .image h1{
+    /* position: absolute; */
+    /* bottom: 0; */
+    color: white;
+    font-size: 30px;
+    text-shadow: 2px 2px black;
+    /* font-weight: bold; */
+}
+    .Restaurantcard .imageCard{
+   width: 100% !important;
+   height: 200px !important;
+    color: white;
+    font-size: 28px;
+    text-shadow: 2px 2px black;
+    /* font-weight: bold; */
+}
+.Restaurantcard{
+    width:150px;
+    /* height:100px; */
+    transition:transform 0.1s;
+}
+.Restaurantcard:hover{
+    transform: scale(1.03);
+    cursor: pointer;
+}
+}

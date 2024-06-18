@@ -4,7 +4,7 @@ const Restaurantcard=({areaName,avgRating,cuisines,name,sla,cloudinaryImageId})=
     return(
         <div className="Restaurantcard mb-4">
             <div className="image"  style={{height:"216px",display:"flex"}}>
-                <img src={HostUrl+cloudinaryImageId} width="90%"height="100%" style={{borderRadius:"26px"}} />
+                <img src={HostUrl+cloudinaryImageId} width="90%"height="100%" className="imageCard" style={{borderRadius:"26px"}} />
             </div>
             <div className="content px-2 mt-2">
                 <h4 className="">{name}</h4>
