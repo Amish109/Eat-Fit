@@ -8,10 +8,16 @@ import { RouterProvider } from 'react-router-dom';
 
 function App() {
   return (
+    // <div className="App">
+    //   <Header/>
+    //   <RouterProvider router={AppRouter} />
+    //   {/* <Body/> */}
+    //   {/* <Shimmer/> */}
+    //   <Footer/>
+    // </div>
     <div className="App">
       <Header/>
-      <RouterProvider router={AppRouter} />
-      {/* <Body/> */}
+      <Body/>
       {/* <Shimmer/> */}
       <Footer/>
     </div>

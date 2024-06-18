@@ -3,10 +3,10 @@ const Restaurantcard=({areaName,avgRating,cuisines,name,sla,cloudinaryImageId})=
     //imageURL , title,starRating,deliveryTime,cuisine,address
     return(
         <div className="Restaurantcard mb-4">
-            <div className="image"  style={{height:"216px",display:"flex"}}>
+            <div className="image"  style={{height:"216px",display:"flex",justifyContent:"center"}}>
                 <img src={HostUrl+cloudinaryImageId} width="90%"height="100%" className="imageCard" style={{borderRadius:"26px"}} />
             </div>
-            <div className="content px-2 mt-2">
+            <div className="content mt-2">
                 <h4 className="">{name}</h4>
                 <div className="d-flex justify-content-between"><span>⭐{avgRating}</span> <span>{sla.deliveryTime} mins</span></div>
                 <div className="cuisines" style={{whiteSpace:"nowrap",overflow:"hidden",textOverflow:"ellipsis"}}title={cuisines.join(",")}>{cuisines.join(",")}</div>

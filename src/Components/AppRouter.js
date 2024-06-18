@@ -3,23 +3,25 @@ import Body from "./Body";
 import Contact from "./Contact";
 import Cart from "./Cart";
 import About from "./About";
+import Header from "./Header";
+import Footer from "./Footer";
 
 export const AppRouter = createBrowserRouter([
     {
       path: "/",
-      element:<Body/>
+      element:<><Header/><Body/><Footer/></>
     },
     {
       path: "/about",
-      element:<About/>
+      element:<><Header/><About/><Footer/></>
     },
     {
       path: "/contact",
-      element:<Contact/>
+      element:<><Header/><Contact/><Footer/></>
     },
     {
       path: "/cart",
-      element:<Cart/>
+      element:<><Header/><Cart/><Footer/></>
     },
   ]);
   
