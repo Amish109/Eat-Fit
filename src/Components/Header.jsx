@@ -25,18 +25,6 @@ const Header=()=>{
                     <li className="nav-item ">
                     <a className="nav-link" href="/cart">Cart🛒</a>
                     </li>  
-                    {/* <li className="nav-item ">
-                    <Link className="nav-link" to="/">Home</Link>
-                    </li>
-                    <li className="nav-item ">
-                    <Link className="nav-link" to="/about">About</Link>
-                    </li>
-                    <li className="nav-item ">
-                    <Link className="nav-link" to="/contact">Contact Us</Link>
-                    </li>  
-                    <li className="nav-item ">
-                    <Link className="nav-link" to="/cart">Cart🛒</Link>
-                    </li>   */}
                 </ul>
                 </div>
             </div>

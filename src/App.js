@@ -1,10 +1,7 @@
 import './App.css';
 import Header from "./Components/Header.jsx"
-import Body from "./Components/Body.jsx"
 import Footer from "./Components/Footer.jsx"
-import Shimmer from './Components/Shimmer.jsx';
-import { AppRouter } from './Components/AppRouter.js';
-import { RouterProvider } from 'react-router-dom';
+import { Outlet, RouterProvider } from 'react-router-dom';
 
 function App() {
   return (
@@ -17,8 +14,8 @@ function App() {
     // </div>
     <div className="App">
       <Header/>
-      <Body/>
-      {/* <Shimmer/> */}
+      {/* <Body/> */}
+      <Outlet/>
       <Footer/>
     </div>
   );
