@@ -14,16 +14,16 @@ const Header=()=>{
                     {/* //collapse navbar-collapse */}
                 <ul className="navbar-nav pe-3 cursor-pointer">
                     <li className="nav-item ">
-                    <a className="nav-link" href="/">Home</a>
+                    <Link className="nav-link" to="/">Home</Link>
                     </li>
                     <li className="nav-item ">
-                    <a className="nav-link" href="/about">About</a>
+                    <Link className="nav-link" to="/about">About</Link>
                     </li>
                     <li className="nav-item ">
-                    <a className="nav-link" href="/contact">Contact Us</a>
+                    <Link className="nav-link" to="/contact">Contact Us</Link>
                     </li>  
                     <li className="nav-item ">
-                    <a className="nav-link" href="/cart">Cart🛒</a>
+                    <Link className="nav-link" to="/cart">Cart🛒</Link>
                     </li>  
                 </ul>
                 </div>

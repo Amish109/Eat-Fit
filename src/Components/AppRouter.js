@@ -6,6 +6,8 @@ import About from "./About";
 // import Header from "./Header";
 // import Footer from "./Footer";
 import App from "../App";
+import ErrorPage from "./ErrorPage";
+import Menu from "./Menu";
 
 
 //======== Outlets =============
@@ -13,6 +15,7 @@ export const appRouter= createBrowserRouter([
   {
     path:"/",
     element:<App/>,
+    errorElement:<ErrorPage/>,
     children:[
       {
         path:"about",
@@ -30,6 +33,24 @@ export const appRouter= createBrowserRouter([
         path:"",
         element:<Body/>
       },
+      // {
+      //   path:"menu",
+      //   element:<Menu/>,
+      //   children:[
+      //     {
+      //       path:"restaurant",
+      //       element:<>Restaurant Data</>
+      //     },
+      //     {
+      //       path:":id",
+      //       element:<>Dynamic id</>
+      //     }
+      //   ]
+      // }
+      {
+        path:"menu/:id",
+        element:<Menu/>
+      }
     ]
   }
 ])

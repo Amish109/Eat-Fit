@@ -78,3 +78,11 @@ Copy the route code from createBrowserRouter  https://reactrouter.com/en/main/ro
     <Head/>
         <Outlet/>
     <Footer/>
+
+
+
+
+## Flow if error occurs
+ index.js is called first as we start project with npm start which make index.js run first
+ then router provider is called where we hav our app element as parent which is not render yet
+ so it shows error of calling element which is not rendered yet
