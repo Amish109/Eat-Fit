@@ -1,7 +1,9 @@
+import { Link } from "react-router-dom"
 import { HostUrl } from "../constants/restaurants"
-const Restaurantcard=({areaName,avgRating,cuisines,name,sla,cloudinaryImageId})=>{
+const Restaurantcard=({areaName,avgRating,cuisines,name,sla,cloudinaryImageId,id})=>{
     //imageURL , title,starRating,deliveryTime,cuisine,address
     return(
+        <Link to={`/menu/${id}`} className="text-dark text-decoration-none">
         <div className="Restaurantcard mb-4">
             <div className="image"  style={{height:"216px",display:"flex",justifyContent:"center"}}>
                 <img src={HostUrl+cloudinaryImageId} width="90%"height="100%" className="imageCard" style={{borderRadius:"26px"}} />
@@ -13,6 +15,7 @@ const Restaurantcard=({areaName,avgRating,cuisines,name,sla,cloudinaryImageId})=
                 <p>{areaName}</p>
             </div>
         </div>
+        </Link>
     )
 }
 export default Restaurantcard

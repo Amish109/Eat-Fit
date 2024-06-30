@@ -66,9 +66,11 @@ if(error){
        
         {
           loadingStatus?
-          new Array(20).fill(0).map((element,index)=>{
-            return <Shimmer key={index}/>
-          }):
+          <div className="d-flex justify-content-center gap-4 flex-wrap ">
+            <Shimmer/>
+          </div>
+      
+        :
       restaurantData?restaurantData.map((restaurant,index)=>{
             return(
               <Restaurantcard key={restaurant.info.id} {...restaurant.info}/>

@@ -1,7 +1,9 @@
 import "./test.css"
 const Shimmer= ()=>{
     return(
-        <div className="Restaurantcard ShimmerCard shine mb-4">
+    new Array(20).fill(0).map((element,index)=>{
+       return(
+        <div key={index} className="Restaurantcard ShimmerCard shine mb-4">
         <div className="image ShimmerImg "  style={{height:"216px",display:"flex"}}>
             <img src="" width="90%"height="100%" className="" style={{borderRadius:"26px"}} />
         </div>
@@ -12,6 +14,9 @@ const Shimmer= ()=>{
             <p></p>
         </div>
     </div>
+       )
+          }
+        )
     )
 }
 export default Shimmer
