@@ -1,6 +1,6 @@
 const ResInfo=({name,avgRating,cuisines,deliveryTime,distance,costForTwo,ratingCount,remark})=>{
     return(
-        <div>
+        <div className="info_container p-3">
             <h1>{name}</h1>
             <p>⭐{avgRating} {ratingCount}{costForTwo}</p>
             <p>{cuisines}</p>

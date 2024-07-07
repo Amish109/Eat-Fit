@@ -76,3 +76,50 @@
     cursor: pointer;
 }
 }
+
+.ShimmerCard {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .ShimmerCard::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0),
+      rgba(255, 255, 255, 0.5),
+      rgba(255, 255, 255, 0)
+    );
+    animation: shimmer 2s infinite;
+  }
+  
+  @keyframes shimmer {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+  
+  .ShimmerCard .ShimmerImg,
+  .ShimmerCard .ShimmerText,
+  .ShimmerCard .ShimmerTextSPan {
+    background-color: rgb(236, 231, 231);
+  }
+
+  .mwnu_container{
+    width: 100%;
+    max-width:750px;
+    margin: auto;
+  }
+
+  .info_container{
+    border: 1px solid grey;
+    border-radius: 5px;
+  }

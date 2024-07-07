@@ -51,7 +51,7 @@ const Menu=()=>{
     const {slaString,lastMileTravelString}=sla;
     const {enrichedText} =expectationNotifiers[0]
     return(
-        <div>
+        <div className="mwnu_container"> 
             <div className="Menu">
             <ResInfo
             name={name} avgRating={avgRating} cuisines={cuisines.join(",")} deliveryTime={slaString} distance={lastMileTravelString} costForTwo={costForTwoMessage} ratingCount={totalRatingsString} 
@@ -60,7 +60,7 @@ const Menu=()=>{
                     />
             </div>
 
-            <div>
+            <div className="p-3">
                 {
                     normalMenu.map((normalCategory,index)=>{
                         return(
@@ -69,7 +69,20 @@ const Menu=()=>{
                                {
                                 normalCategory?.card?.card?.itemCards.map((dish)=>{
                                  return(
-                                    <MenuSection isVeg={dish.card?.info?.isVeg} name={dish.card?.info?.name} cost={dish.card?.info?.price} avgRating={dish.card?.info?.ratings?.aggregatedRating?.rating} ratingCount={dish.card?.info?.ratings?.aggregatedRating?.ratingCount} description={dish.card?.info?.description} imgUrl={dish.card?.info?.imageId}    />
+                                    <>
+                                    
+                                    <MenuSection 
+                                    isVeg={dish.card?.info?.isVeg} 
+                                    name={dish.card?.info?.name} 
+                                    // cost={dish.card?.info?.defaultPrice?dish.card?.info?.defaultPrice/100:dish.card?.info?.price/100} 
+                                    cost={dish.card?.info?.defaultPrice/100 || dish.card?.info?.price/100} 
+                                    avgRating={dish.card?.info?.ratings?.aggregatedRating?.rating} 
+                                    ratingCount={dish.card?.info?.ratings?.aggregatedRating?.ratingCount} 
+                                    description={dish.card?.info?.description} 
+                                    imgUrl={dish.card?.info?.imageId}    />
+                                    <hr/>
+                                    </>
+
                                  )  
                                 })
                                
@@ -79,6 +92,53 @@ const Menu=()=>{
                         )
                     })
                 
+                }
+            </div>
+            <div className="p-3">
+                {
+                    nestedMenu.map((category)=>{
+                        return(
+                            <>
+                             <h4>{category?.card?.card?.title}</h4>
+                             {
+                               category?.card?.card?.categories.map((subCategory)=>{
+                                return(
+                                    <>
+                                    <h5 className="text-primary">{subCategory?.title}</h5>
+                                    {
+                                        subCategory.itemCards.map((dish)=>{
+                                            return(
+                                                <>
+                                                             <MenuSection 
+                                                isVeg={dish.card?.info?.isVeg} 
+                                                name={dish.card?.info?.name} 
+                                                // cost={dish.card?.info?.defaultPrice?dish.card?.info?.defaultPrice/100:dish.card?.info?.price/100} 
+                                                cost={dish.card?.info?.defaultPrice/100 || dish.card?.info?.price/100} 
+                                                avgRating={dish.card?.info?.ratings?.aggregatedRating?.rating} 
+                                                ratingCount={dish.card?.info?.ratings?.aggregatedRating?.ratingCount} 
+                                                description={dish.card?.info?.description} 
+                                                imgUrl={dish.card?.info?.imageId}    />
+                                                <hr />
+                                                </>
+                                            )
+                                        })
+                                    }
+                                    </>
+                                    // <MenuSection 
+                                    // isVeg={dish.card?.info?.isVeg} 
+                                    // name={dish.card?.info?.name} 
+                                    // // cost={dish.card?.info?.defaultPrice?dish.card?.info?.defaultPrice/100:dish.card?.info?.price/100} 
+                                    // cost={dish.card?.info?.defaultPrice/100 || dish.card?.info?.price/100} 
+                                    // avgRating={dish.card?.info?.ratings?.aggregatedRating?.rating} 
+                                    // ratingCount={dish.card?.info?.ratings?.aggregatedRating?.ratingCount} 
+                                    // description={dish.card?.info?.description} 
+                                    // imgUrl={dish.card?.info?.imageId}    />
+                                )
+                               }) 
+                             }
+                            </>
+                        )
+                    })
                 }
             </div>
         </div>
