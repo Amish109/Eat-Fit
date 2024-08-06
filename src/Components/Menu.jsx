@@ -5,30 +5,38 @@ import {  useParams } from "react-router-dom"
 import ResInfo from "./ResInfo";
 import Shimmer from "./Shimmer";
 import MenuSection from "./MenuSection";
+import useMenu from "../CustomHooks/useMenu";
+import NormalMenu from "./NormalMenu";
+import NestedMenu from "./NestedMenu";
 const Menu=()=>{
+    const [show,setShow] = useState(0);
+    const [showNested,setShowNested] = useState(0);
     const {id}=useParams();
-    const [menuData,setMenuData]= useState([]);
+    // const [menuData,setMenuData]= useState([]);
     // const [subMenuData,setSubMenuData]= useState([]);
-    const [loading,setLoading]= useState(true);
-    useEffect(()=>{
-   try {
-     (async()=>{
-         const response= await fetch(`https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=19.07480&lng=72.88560&restaurantId=${id}&catalog_qa=undefined&submitAction=ENTER`);
-        //  const response= await fetch(`https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=19.07480&lng=72.88560&restaurantId=28405&catalog_qa=undefined&submitAction=ENTER`);
-         const json = await response.json();
-         console.log("Data filtered",json?.data?.cards);
-         setMenuData(json?.data?.cards);
-        //  setSubMenuData(json?.data?.cards[4]?.groupedCard.cardGroupMap.REGULAR.cards);
-         setLoading(false);
-         console.log("Data from Api Menu component:",json);
-     })()
-   } catch (error) {
-        console.log("Error in calling the Menu API",error)
-   }
+    // const [loading,setLoading]= useState(true);
+    // useMenu(setMenuData,setLoading,id);
+    const menuData=useMenu(id);
+//     useEffect(()=>{
+//    try {
+//      (async()=>{
+//          const response= await fetch(`https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=19.07480&lng=72.88560&restaurantId=${id}&catalog_qa=undefined&submitAction=ENTER`);
+//         //  const response= await fetch(`https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=19.07480&lng=72.88560&restaurantId=28405&catalog_qa=undefined&submitAction=ENTER`);
+//          const json = await response.json();
+//          console.log("Data filtered",json?.data?.cards);
+//          setMenuData(json?.data?.cards);
+//         //  setSubMenuData(json?.data?.cards[4]?.groupedCard.cardGroupMap.REGULAR.cards);
+//          setLoading(false);
+//          console.log("Data from Api Menu component:",json);
+//      })()
+//    } catch (error) {
+//         console.log("Error in calling the Menu API",error)
+//    }
 
-    },[])
+//     },[])
     console.log(id);
-    if(loading ){
+    // if(loading ){
+    if(menuData.length==0){
         return <div className="d-flex justify-content-center gap-4 flex-wrap" >
             <Shimmer/>
         </div>
@@ -36,10 +44,10 @@ const Menu=()=>{
 
     const Cateogries=menuData[4]?.groupedCard.cardGroupMap.REGULAR.cards;
     const normalMenu=Cateogries.filter((menuCategory)=>{
-        return menuCategory.card.card["@type"]=="type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
+        return menuCategory?.card?.card["@type"]=="type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
     })
     const nestedMenu=Cateogries.filter((nestedCategory)=>{
-        return nestedCategory.card.card["@type"]=="type.googleapis.com/swiggy.presentation.food.v2.NestedItemCategory"
+        return nestedCategory?.card?.card["@type"]=="type.googleapis.com/swiggy.presentation.food.v2.NestedItemCategory"
     })
 
     console.log("normalMenu",normalMenu);
@@ -49,7 +57,7 @@ const Menu=()=>{
     const {name,avgRating,totalRatingsString,costForTwoMessage,cuisines,sla,expectationNotifiers}= menuData[2]?.card?.card?.info;
     console.log("name,avgRating,totalRatingsString,costForTwoMessage,cuisines,sla,expectationNotifiers",name,avgRating,totalRatingsString,costForTwoMessage,cuisines,sla,expectationNotifiers)
     const {slaString,lastMileTravelString}=sla;
-    const {enrichedText} =expectationNotifiers[0]
+    const {enrichedText} = expectationNotifiers != null ? expectationNotifiers[0] : "";
     return(
         <div className="mwnu_container"> 
             <div className="Menu">
@@ -64,79 +72,18 @@ const Menu=()=>{
                 {
                     normalMenu.map((normalCategory,index)=>{
                         return(
-                            <div>
-                                <h6 key={index}>{normalCategory?.card?.card?.title}</h6>
-                               {
-                                normalCategory?.card?.card?.itemCards.map((dish)=>{
-                                 return(
-                                    <>
-                                    
-                                    <MenuSection 
-                                    isVeg={dish.card?.info?.isVeg} 
-                                    name={dish.card?.info?.name} 
-                                    // cost={dish.card?.info?.defaultPrice?dish.card?.info?.defaultPrice/100:dish.card?.info?.price/100} 
-                                    cost={dish.card?.info?.defaultPrice/100 || dish.card?.info?.price/100} 
-                                    avgRating={dish.card?.info?.ratings?.aggregatedRating?.rating} 
-                                    ratingCount={dish.card?.info?.ratings?.aggregatedRating?.ratingCount} 
-                                    description={dish.card?.info?.description} 
-                                    imgUrl={dish.card?.info?.imageId}    />
-                                    <hr/>
-                                    </>
-
-                                 )  
-                                })
-                               
-                               } 
-                               
-                            </div>
+                           <NormalMenu normalCollection={normalCategory} index={index} show={show} showData={show==index?true:false} setShow={setShow}/>
                         )
                     })
                 
                 }
             </div>
+            {/* <NormalMenu normalCollection={normalMenu}/> */}
             <div className="p-3">
                 {
-                    nestedMenu.map((category)=>{
+                    nestedMenu.map((category ,index)=>{
                         return(
-                            <>
-                             <h4>{category?.card?.card?.title}</h4>
-                             {
-                               category?.card?.card?.categories.map((subCategory)=>{
-                                return(
-                                    <>
-                                    <h5 className="text-primary">{subCategory?.title}</h5>
-                                    {
-                                        subCategory.itemCards.map((dish)=>{
-                                            return(
-                                                <>
-                                                             <MenuSection 
-                                                isVeg={dish.card?.info?.isVeg} 
-                                                name={dish.card?.info?.name} 
-                                                // cost={dish.card?.info?.defaultPrice?dish.card?.info?.defaultPrice/100:dish.card?.info?.price/100} 
-                                                cost={dish.card?.info?.defaultPrice/100 || dish.card?.info?.price/100} 
-                                                avgRating={dish.card?.info?.ratings?.aggregatedRating?.rating} 
-                                                ratingCount={dish.card?.info?.ratings?.aggregatedRating?.ratingCount} 
-                                                description={dish.card?.info?.description} 
-                                                imgUrl={dish.card?.info?.imageId}    />
-                                                <hr />
-                                                </>
-                                            )
-                                        })
-                                    }
-                                    </>
-                                    // <MenuSection 
-                                    // isVeg={dish.card?.info?.isVeg} 
-                                    // name={dish.card?.info?.name} 
-                                    // // cost={dish.card?.info?.defaultPrice?dish.card?.info?.defaultPrice/100:dish.card?.info?.price/100} 
-                                    // cost={dish.card?.info?.defaultPrice/100 || dish.card?.info?.price/100} 
-                                    // avgRating={dish.card?.info?.ratings?.aggregatedRating?.rating} 
-                                    // ratingCount={dish.card?.info?.ratings?.aggregatedRating?.ratingCount} 
-                                    // description={dish.card?.info?.description} 
-                                    // imgUrl={dish.card?.info?.imageId}    />
-                                )
-                               }) 
-                             }
-                            </>
+                           <NestedMenu category={category}  index={index} showNested={showNested} showData={showNested==index?true:false} setShowNested={setShowNested}/>
                         )
                     })
                 }

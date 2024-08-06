@@ -5,7 +5,7 @@ const ResInfo=({name,avgRating,cuisines,deliveryTime,distance,costForTwo,ratingC
             <p>⭐{avgRating} {ratingCount}{costForTwo}</p>
             <p>{cuisines}</p>
             <p>{deliveryTime}</p>
-            <p>{distance}| {remark.replace(/<b>(.*?)<\/b>/,"")}</p>
+            <p>{distance}| {remark && remark.replace(/<b>(.*?)<\/b>/,"")}</p>
             {/* <p>{distance}| {remark.replace(/<\/?b>/g,"")}</p> */}
         </div>
     )

@@ -1,4 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
+import { lazy, Suspense } from 'react';
 import Body from "./Body";
 import Contact from "./Contact";
 import Cart from "./Cart";
@@ -8,7 +9,9 @@ import About from "./About";
 import App from "../App";
 import ErrorPage from "./ErrorPage";
 import Menu from "./Menu";
-
+import Shimmer from "./Shimmer";
+// import Instamart from "./Instamart";
+const Instamart = lazy(() => import('./Instamart'));
 
 //======== Outlets =============
 export const appRouter= createBrowserRouter([
@@ -28,6 +31,17 @@ export const appRouter= createBrowserRouter([
       {
         path:"cart",
         element:<Cart/>
+      },
+      // {
+      //   path:"instamart",
+      //   element:<Instamart/>
+      // },
+      {
+        path:"instamart",
+        element:
+        <Suspense fallback={<Shimmer />}>
+        <Instamart/>
+       </Suspense>
       },
       {
         path:"",
