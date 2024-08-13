@@ -71,3 +71,18 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 ## Single resoibility function
 == Each component sould have one function or duty
+
+
+## ------------------------------------ Redux Tool Kit  ------------------------------------
+Floow :-
+- Redux Tool kit is a state mananging tool for JS applications
+- We use react-redux along with redux/tookit to bridge react and redux
+- We have 1 store and different slices in it in which data will be stored
+- when an button is clicked for eg: add to cart, then an action is dispatched and a function is called called reducers and it will update the value of slice and to read the data we have to use selector and do a subscription with slice 
+
+
+Steps :-
+1) install package
+1) Create Store
+2) Create Slice
+3) Provide Store for whole application

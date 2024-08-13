@@ -16,7 +16,7 @@ const NestedMenu = ({category,index,showNested ,showData,setShowNested}) => {
     //     });
     // })
   return (
-    <div name={`NestedMenuDiv_${index}`} id={`NestedMenuDiv_${index}`} ref={nestedDivRef} >
+    <div name={`NestedMenuDiv_${index}`} id={`NestedMenuDiv_${index}`} key={index} ref={nestedDivRef} >
         <a href={`#NestedMenuDiv_${index}`} className="text-decoration-none text-dark">
          <h4 className="bg-secondary p-4" onClick={()=>setShowNested(showNested!==index?index:-1)}>{category?.card?.card?.title}</h4>
         </a>

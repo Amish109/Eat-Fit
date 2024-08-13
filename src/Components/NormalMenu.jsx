@@ -1,9 +1,15 @@
 // import { useState } from "react"
 import { useEffect, useRef } from "react";
-import MenuSection from "./MenuSection"
+import MenuSection from "./MenuSection";
+import { useDispatch } from "react-redux";
+import { addItem } from "../utils/cartSlice";
 
 const NormalMenu = ({normalCollection,index,show ,showData,setShow})=>{
     const divRef = useRef();
+    const dispatch =useDispatch();
+    const handleAddToCart =(data)=>{
+        dispatch(addItem(data));
+    }
     // debugger
 // useEffect(()=>{
 //     if(index!=show){
@@ -43,7 +49,8 @@ const NormalMenu = ({normalCollection,index,show ,showData,setShow})=>{
             avgRating={dish.card?.info?.ratings?.aggregatedRating?.rating} 
             ratingCount={dish.card?.info?.ratings?.aggregatedRating?.ratingCount} 
             description={dish.card?.info?.description} 
-            imgUrl={dish.card?.info?.imageId}    />
+            imgUrl={dish.card?.info?.imageId}  
+            handleAddToCart={()=>handleAddToCart(dish)}  />
             <hr/>
             {
                 //  divRef.current.scrollIntoView({ behavior: 'smooth' })
