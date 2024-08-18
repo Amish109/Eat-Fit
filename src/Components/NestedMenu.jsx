@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import MenuSection from "./MenuSection";
 
-const NestedMenu = ({category,index,showNested ,showData,setShowNested}) => {
+const NestedMenu = ({category,index,showNested ,showData,setShowNested ,fromShimmerMenu}) => {
     const nestedDivRef = useRef();
     // useEffect(()=>{
     //     if(index!=showNested){
@@ -18,7 +18,7 @@ const NestedMenu = ({category,index,showNested ,showData,setShowNested}) => {
   return (
     <div name={`NestedMenuDiv_${index}`} id={`NestedMenuDiv_${index}`} key={index} ref={nestedDivRef} >
         <a href={`#NestedMenuDiv_${index}`} className="text-decoration-none text-dark">
-         <h4 className="bg-secondary p-4" onClick={()=>setShowNested(showNested!==index?index:-1)}>{category?.card?.card?.title}</h4>
+         <h4 className={fromShimmerMenu?"ShimmerText p-4":"bg-secondary p-4"} onClick={()=>setShowNested(showNested!==index?index:-1)}>{category?.card?.card?.title}</h4>
         </a>
         {
         category?.card?.card?.categories.map((subCategory)=>{

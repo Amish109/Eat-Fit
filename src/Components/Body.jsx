@@ -7,12 +7,12 @@ import CardContainer from "./Cardcontainer"
 const Body=()=>{
     return(
         <>
-            <p className="text-center">This is body</p>
+            {/* <p className="text-center">This is body</p> */}
             <Carousel/>
-            <div className="d-flex justify-content-between ps-2 pe-2">
+            {/* <div className="d-flex justify-content-between ps-2 pe-2">
                 <Filters/>
                 <Searchbar/>
-            </div>
+            </div> */}
             <CardContainer/>
 
         </>

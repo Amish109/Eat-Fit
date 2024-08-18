@@ -9,6 +9,7 @@ import store from './utils/store.js';
 function App() {
   // const [name,setName] = useState({});
   const [name,setName] = useState("");
+  const [carousalData,setCarousalData] = useState([]);
   useEffect(()=>{
     setName('AmishTiwari');
   },[])
@@ -21,7 +22,7 @@ function App() {
     //   <Footer/>
     // </div>
 <Provider store={store}>
-  <UserContext.Provider value={{username:name,setName}}>
+  <UserContext.Provider value={{username:name,setName,carousalData,setCarousalData}}>
       <div className="App">
         <Header/>
         {/* <Body/> */}

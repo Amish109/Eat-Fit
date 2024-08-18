@@ -1,7 +1,9 @@
 import Restaurantcard from "./RestaurantCardNew";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
+import { UserContext } from "../utils/UserContext";
 const CardContainer = () => {
+  const {carousalData,setCarousalData} = useContext(UserContext);
   // let {card:{card:{gridElements:{infoWithStyle:{restaurants}}}}}=restaurantList[1]
  const [storedData,setStoredData]=useState([]);
  const [restaurantData,setRestaurantData]=useState([]);
@@ -19,6 +21,7 @@ const CardContainer = () => {
       const data =await response.json();
       console.log("response from Api",response);
       console.log("data from Api",data);
+      setCarousalData(data?.data?.cards[0].card?.card?.imageGridCards?.info);
       console.log(data.data.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
       setRestaurantData(data.data.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
       setStoredData(data.data.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);

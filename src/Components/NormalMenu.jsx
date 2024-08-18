@@ -4,7 +4,7 @@ import MenuSection from "./MenuSection";
 import { useDispatch } from "react-redux";
 import { addItem } from "../utils/cartSlice";
 
-const NormalMenu = ({normalCollection,index,show ,showData,setShow})=>{
+const NormalMenu = ({normalCollection,index,show ,showData,setShow,fromShimmerMenu})=>{
     const divRef = useRef();
     const dispatch =useDispatch();
     const handleAddToCart =(data)=>{
@@ -27,7 +27,7 @@ const NormalMenu = ({normalCollection,index,show ,showData,setShow})=>{
     return(
         <div  name={`MenuDiv_${index}`} id={`MenuDiv_${index}`} ref={divRef}>
             <a href={`#MenuDiv_${index}`}>
-                 <h6 key={index} className="bg-dark text-white p-4 cursor-pointer" onClick={()=>setShow(show!==index?index:-1)}>{normalCollection?.card?.card?.title}</h6>
+                 <h6 key={index} className={fromShimmerMenu?" text-white p-4 cursor-pointer ShimmerText":"bg-dark text-white p-4 cursor-pointer"} onClick={()=>setShow(show!==index?index:-1)}>{normalCollection?.card?.card?.title}</h6>
             </a>
         {/* <h6 key={index} className="bg-secondary p-4 cursor-pointer" >{normalCollection?.card?.card?.title}</h6> */}
         

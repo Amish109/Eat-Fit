@@ -8,6 +8,7 @@ import MenuSection from "./MenuSection";
 import useMenu from "../CustomHooks/useMenu";
 import NormalMenu from "./NormalMenu";
 import NestedMenu from "./NestedMenu";
+import ShimmerMenu from "./ShimmerMenu";
 const Menu=()=>{
     const [show,setShow] = useState(0);
     const [showNested,setShowNested] = useState(0);
@@ -37,8 +38,10 @@ const Menu=()=>{
     console.log(id);
     // if(loading ){
     if(menuData.length==0){
+    // if(menuData.length>=0){
         return <div className="d-flex justify-content-center gap-4 flex-wrap" >
-            <Shimmer/>
+            {/* <Shimmer/> */}
+            <ShimmerMenu/>
         </div>
     }
 
