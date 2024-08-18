@@ -2,8 +2,10 @@ import Restaurantcard from "./RestaurantCardNew";
 import { useContext, useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { UserContext } from "../utils/UserContext";
+import useOnline from "../CustomHooks/useOnline";
 const CardContainer = () => {
   const {carousalData,setCarousalData} = useContext(UserContext);
+  const isOnline = useOnline();
   // let {card:{card:{gridElements:{infoWithStyle:{restaurants}}}}}=restaurantList[1]
  const [storedData,setStoredData]=useState([]);
  const [restaurantData,setRestaurantData]=useState([]);
@@ -12,22 +14,29 @@ const CardContainer = () => {
  const [error,setError]=useState(false);
   const ApiCall =async()=>{
     try {
-      const response = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=19.07480&lng=72.88560&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING",{
-       header:{
-       "Content-Type:":"application/json; charset=utf-8"
-       }
-      })
-     
-      const data =await response.json();
-      console.log("response from Api",response);
-      console.log("data from Api",data);
-      setCarousalData(data?.data?.cards[0].card?.card?.imageGridCards?.info);
-      console.log(data.data.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
-      setRestaurantData(data.data.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-      setStoredData(data.data.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-      setLoadingStatus(false);
+      if(isOnline==false){
+        setError(true);
+        return
+      } else{
+
+        const response = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=19.07480&lng=72.88560&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING",{
+         header:{
+         "Content-Type:":"application/json; charset=utf-8"
+         }
+        })
+       
+        const data =await response.json();
+        console.log("response from Api",response);
+        console.log("data from Api",data);
+        setCarousalData(data?.data?.cards[0].card?.card?.imageGridCards?.info);
+        console.log(data.data.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+        setRestaurantData(data.data.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+        setStoredData(data.data.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+        setLoadingStatus(false);
+      }
     } catch (error) {
-      setError(true)
+      setError(true);
+      // throw new Error(error);
     }
   }
   // let {card:{card:{gridElements:{infoWithStyle:{restaurants}}}}}=restaurantList[1];
@@ -52,18 +61,23 @@ const CardContainer = () => {
 // New
 if(error){
   return(
-    <h1 style={{color:"red",height:"50.66dvh"}}>Something Went Wrong..</h1>
+    <div className="min-h-screen">
+      <h1 style={{color:"red",height:"50.66dvh"}}>Something Went Wrong..</h1>
+    </div>
   )
 }
   return (
     // <div className="container "style={{display:"grid",gridTemplateColumns:"repeat(4,1fr)"}}>
-    <div className="CardContainer">
-      <div className="container mb-3 d-flex justify-content-between">
+    <div className="CardContainer min-h-screen">
+      <div className="container mb-3 d-flex flex-wrap gap-4">
+        {/* <div> */}
+          <input type="text" value={textData} onChange={(event)=>{updateTextData(event.target.value)}}  placeholder="Search.." className="border border-dark p-2 col-md-8 searchData" style={{borderRadius:'20px',width:'500px'}} />
+        {/* </div> */}
         <div>
-          <input type="text" value={textData} onChange={(event)=>{updateTextData(event.target.value)}}  placeholder="Search.." className="border border-dark p-2 col-md-8" style={{borderRadius:'20px',width:'500px'}} />
           <button className="btn btn-primary btn-sm ms-2" onClick={searchData}>Search</button>
-        </div>
         <button className="btn btn-primary btn-sm ms-2" onClick={filterData}>Top Rated</button>
+        <button className="btn btn-primary btn-sm ms-2" onClick={()=>setRestaurantData(storedData)}>Clear All</button>
+        </div>
       </div>
       <div className="container divContainer d-flex flex-wrap gap-2 p-0 justify-content-center">
        

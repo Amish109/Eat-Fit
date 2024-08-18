@@ -4,8 +4,15 @@ import MenuSection from './MenuSection';
 const Cart = () => {
   const data =useSelector((store)=>store.cart.items);
   console.log("Data of store",data);
+  if(data.length == 0){
+    return(
+      <div className='d-flex align-items-center justify-content-center' style={{minHeight:"82.90dvh"}}>
+       Your cart is empty..
+      </div>
+    )
+  }
   return (
-    <div>
+    <div className='min-h-screen'>
       {
         data.map((dish,index)=>{
           return <MenuSection 

@@ -64,7 +64,7 @@ const Carousel=()=>{
         // }
     }    
     return(
-       <>
+       <div className="darkThemsCarousal">
        <div className="text-end me-2">
        <button className="btn btn-outline-primary btn-sm" onClick={handlePreviousClick}>Previous</button>
        <button className="btn btn-outline-primary btn-sm m-2" onClick={handleNextClick}>Next</button>
@@ -75,8 +75,8 @@ const Carousel=()=>{
             // alert("data")
             //    if(index<Math.floor(window.screen.width/150)-1) {
                 return (
-                    <div className="" style={{width:"150px"}} key={element.imageId}>
-                        <img src={HostUrl+element.imageId} style={{width:"100%"}}/>
+                    <div className="CarouslDiv " style={{width:"150px",}} key={element.imageId}>
+                        <img src={HostUrl+element.imageId} className=" " style={{width:"100%"}}/>
                     </div>
                    )
             //    }
@@ -88,7 +88,7 @@ const Carousel=()=>{
             {/* <p className="text-center">This is Carousel</p> */}
             
         </div>
-       </>
+       </div>
     )
 }
 

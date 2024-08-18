@@ -39,7 +39,7 @@ export const appRouter= createBrowserRouter([
       {
         path:"instamart",
         element:
-        <Suspense fallback={<Shimmer />}>
+        <Suspense fallback={<div className="d-flex justify-content-center gap-4 flex-wrap"><Shimmer /></div>}>
         <Instamart/>
        </Suspense>
       },

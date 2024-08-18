@@ -3,7 +3,7 @@ import AboutHeading from './ClassBasedComponent/AboutHeading'
 
 const About = () => {
   return (
-    <div className='mh-100'>
+    <div className='min-h-screen'>
       This is About
       <AboutHeading/>
     </div>

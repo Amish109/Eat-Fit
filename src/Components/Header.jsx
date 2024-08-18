@@ -8,7 +8,7 @@ import { useSelector } from "react-redux"
 const Header=()=>{
     const cartItems = useSelector((store)=>store.cart.items)
     console.log("cartItems",cartItems);
-    const {username} = useContext(UserContext);
+    const {username,darkTheme,setDarkTheme} = useContext(UserContext);
     console.log("Userr namefrom context is",username);
     const isOnline = useOnline();
     console.log("Online status : ",isOnline);
@@ -63,8 +63,9 @@ const Header=()=>{
         // Array
     }
     return(
-        <div className="box-border mb-2">
-            <nav className="flex justify-around  p-3 items-center bg-slate-300">
+        <div className={!isOnline?"sticky top-0":""}>
+        <div className="box-border">
+            <nav className={darkTheme?"flex justify-around  p-3 items-center  darkHeader":"flex justify-around  p-3 items-center bg-slate-300"}>
                 <ul className="d-flex">
                     <span>{isOnline?"🟢":"🔴"}</span>
                     <li>eatfit</li>
@@ -72,6 +73,13 @@ const Header=()=>{
                 
                 </a> */}
                 </ul>
+                <div className="transition-all flex flex-col gap-0 items-center lg:hidden" onClick={hideAndShowMenu}>
+                    <p className={menuShowedForSmallDevice?"border border-black w-5 rotate-45 p-0 mb-1.5":"border border-black w-5 p-0 mb-1.5"}></p>
+                    <p className={menuShowedForSmallDevice?"hidden":"border border-black w-5 p-0 mb-1.5"}></p>
+                    <p className={menuShowedForSmallDevice?"border border-black w-5 -rotate-45 p-0 mb-1.5":"border border-black w-5 p-0 mb-1.5"}></p>
+                </div>
+                <div className="d-flex align-items-center">
+
                 <ul className="text-indigo-500 hidden gap-4 lg:flex">
                    <NavLink to="/" className={({isActive})=>isActive?"text-red-500 cursor-pointer text-decoration-none":"hover:text-red-500 cursor-pointer text-decoration-none"}><li>Home</li></NavLink>
                    <NavLink to="/about" className={({isActive})=>isActive?"text-red-500 cursor-pointer text-decoration-none":"hover:text-red-500 cursor-pointer text-decoration-none"}><li>About</li></NavLink>
@@ -82,6 +90,18 @@ const Header=()=>{
                    
                    </li></NavLink>
                 </ul>
+                <button className="pb-3 float-end" title={
+                    darkTheme?"Light theme" :"Dark theme"
+                } onClick={()=>setDarkTheme((prev)=>!prev)}>
+                    {
+                        !darkTheme?<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-moon-fill" viewBox="0 0 16 16">
+                        <path d="M6 .278a.77.77 0 0 1 .08.858 7.2 7.2 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277q.792-.001 1.533-.16a.79.79 0 0 1 .81.316.73.73 0 0 1-.031.893A8.35 8.35 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.75.75 0 0 1 6 .278"/>
+                      </svg>:<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-brightness-high" viewBox="0 0 16 16">
+                        <path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6m0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8M8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0m0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13m8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5M3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8m10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0m-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0m9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707M4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708"/>
+                        </svg>
+                    }
+                </button>
+                </div>
                    {/* 
                        margin: -185px 5px;
     position: relative;
@@ -93,15 +113,12 @@ const Header=()=>{
                 {/* <button className="lg:hidden  " onClick={hideAndShowMenu}>
                     Test
                 </button> */}
-                <div className="transition-all flex flex-col gap-0 items-center lg:hidden" onClick={hideAndShowMenu}>
-                    <p className={menuShowedForSmallDevice?"border border-black w-5 rotate-45 p-0 mb-1.5":"border border-black w-5 p-0 mb-1.5"}></p>
-                    <p className={menuShowedForSmallDevice?"hidden":"border border-black w-5 p-0 mb-1.5"}></p>
-                    <p className={menuShowedForSmallDevice?"border border-black w-5 -rotate-45 p-0 mb-1.5":"border border-black w-5 p-0 mb-1.5"}></p>
-                </div>
+                
               
             </nav>
             <div className=" justify-end  hidden" ref={menuTabForSmallDevice}>
-                <ul className="text-indigo-500 w-2/5 justify-center lg:hidden gap-4 flex flex-col absolute mt-0.5 px-20 bg-slate-300/90 border border-black text-center items-center">
+                <ul className={darkTheme?"text-indigo-500 w-2/5 justify-center lg:hidden gap-4 flex flex-col absolute mt-0.5 px-20 darkHeader border border-black text-center items-center":"text-indigo-500 w-2/5 justify-center lg:hidden gap-4 flex flex-col absolute mt-0.5 px-20 bg-slate-300/90 border border-black text-center items-center"}>
+                {/* <ul className="text-indigo-500 w-2/5 justify-center lg:hidden gap-4 flex flex-col absolute mt-0.5 px-20 bg-slate-300/90 border border-black text-center items-center"> */}
                 <NavLink to="/" className={({isActive})=>isActive?"text-red-500 cursor-pointer text-decoration-none":"hover:text-red-500 cursor-pointer text-decoration-none"}><li>Home</li></NavLink>
                    <NavLink to="/about" className={({isActive})=>isActive?"text-red-500 cursor-pointer text-decoration-none":"hover:text-red-500 cursor-pointer text-decoration-none"}><li>About</li></NavLink>
                    <NavLink to="/contact" className={({isActive})=>isActive?"text-red-500 cursor-pointer text-decoration-none":"hover:text-red-500 cursor-pointer text-decoration-none"}><li>Contact Us</li></NavLink>
@@ -110,6 +127,12 @@ const Header=()=>{
                 </ul>
             </div>
         </div>
+        {
+            // !isOnline?<marquee>Test</marquee>:""
+            !isOnline?<div className='text-center bg-secondary p-3 text-white'>You're offline, kindly check your internet connection and try again!!</div>:""
+          }
+          </div>
+
     )
 }
 

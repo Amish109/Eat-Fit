@@ -1,6 +1,6 @@
 const Instamart =()=>{
     return (
-        <div>
+        <div className="min-h-screen">
             Instamart Component
         </div>
     )

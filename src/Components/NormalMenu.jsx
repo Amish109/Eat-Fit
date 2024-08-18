@@ -25,8 +25,8 @@ const NormalMenu = ({normalCollection,index,show ,showData,setShow,fromShimmerMe
 //     });
 // })
     return(
-        <div  name={`MenuDiv_${index}`} id={`MenuDiv_${index}`} ref={divRef}>
-            <a href={`#MenuDiv_${index}`}>
+        <div  name={`MenuDiv_${index}`} id={`MenuDiv_${index}`} ref={divRef} className="">
+            <a href={`#MenuDiv_${index}`} className="text-decoration-none">
                  <h6 key={index} className={fromShimmerMenu?" text-white p-4 cursor-pointer ShimmerText":"bg-dark text-white p-4 cursor-pointer"} onClick={()=>setShow(show!==index?index:-1)}>{normalCollection?.card?.card?.title}</h6>
             </a>
         {/* <h6 key={index} className="bg-secondary p-4 cursor-pointer" >{normalCollection?.card?.card?.title}</h6> */}

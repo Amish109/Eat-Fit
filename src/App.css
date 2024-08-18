@@ -50,7 +50,7 @@
 
 @media (max-width:800px) {
 
-    .Restaurantcard .image h1{
+.Restaurantcard .image h1{
     /* position: absolute; */
     /* bottom: 0; */
     color: white;
@@ -58,7 +58,7 @@
     text-shadow: 2px 2px black;
     /* font-weight: bold; */
 }
-    .Restaurantcard .imageCard{
+.Restaurantcard .imageCard{
    width: 100% !important;
    height: 200px !important;
     color: white;
@@ -122,4 +122,32 @@
   .info_container{
     border: 1px solid grey;
     border-radius: 5px;
+  }
+
+
+
+  .darkTheme{
+    background-color: black;
+    color: white;
+  }
+  .darkTheme *{
+    /* background-color: black; */
+    color: white;
+  }
+  
+  .darkTheme .btn{
+    background-color: black;
+  }
+  .darkTheme .searchData{
+    background-color: black;
+  }
+  .darkTheme .btn:hover{
+    background-color: rgb(45, 43, 43);
+  }
+  .darkHeader{
+    background-color: rgb(43, 39, 39);
+  }
+
+  .darkThemsCarousal{
+    /* background-color: black; */
   }
