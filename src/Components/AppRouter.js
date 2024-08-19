@@ -10,6 +10,7 @@ import App from "../App";
 import ErrorPage from "./ErrorPage";
 import Menu from "./Menu";
 import Shimmer from "./Shimmer";
+import CarousalRestraunt from "./CarousalRestraunt";
 // import Instamart from "./Instamart";
 const Instamart = lazy(() => import('./Instamart'));
 
@@ -64,6 +65,10 @@ export const appRouter= createBrowserRouter([
       {
         path:"menu/:id",
         element:<Menu/>
+      },
+      {
+        path:"carausalData/:caraousalId",
+        element:<CarousalRestraunt/>
       }
     ]
   }

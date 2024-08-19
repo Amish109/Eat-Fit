@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react"
 import { UserContext } from "../utils/UserContext";
 import { HostUrl } from "../constants/restaurants"
+import { Link } from "react-router-dom";
 
 const Carousel=()=>{
     const {carousalData,setCarousalData} = useContext(UserContext);
@@ -75,9 +76,11 @@ const Carousel=()=>{
             // alert("data")
             //    if(index<Math.floor(window.screen.width/150)-1) {
                 return (
-                    <div className="CarouslDiv " style={{width:"150px",}} key={element.imageId}>
-                        <img src={HostUrl+element.imageId} className=" " style={{width:"100%"}}/>
-                    </div>
+                    <Link to={`/carausalData/${element.entityId.split("?")[1].split("&")[0].split("=")[1]+"-"+element.entityId.split("?")[1].split("&")[1].split("=")[1]}`}>
+                        <div className="CarouslDiv " style={{width:"150px",}} key={element.imageId}>
+                            <img src={HostUrl+element.imageId} className=" " style={{width:"100%"}}/>
+                        </div>
+                    </Link>
                    )
             //    }
             })

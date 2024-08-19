@@ -5,6 +5,7 @@ import useOnline from "../CustomHooks/useOnline"
 import { useContext, useRef, useState } from "react"
 import { UserContext } from "../utils/UserContext"
 import { useSelector } from "react-redux"
+import { useLocation } from 'react-router-dom';
 const Header=()=>{
     const cartItems = useSelector((store)=>store.cart.items)
     console.log("cartItems",cartItems);
@@ -12,6 +13,7 @@ const Header=()=>{
     console.log("Userr namefrom context is",username);
     const isOnline = useOnline();
     console.log("Online status : ",isOnline);
+    const location = useLocation()
    // let logo=`https://in.images.search.yahoo.com/images/view;_ylt=Awrx_e1WtUhmyU8uhoq9HAx.;_ylu=c2VjA3NyBHNsawNpbWcEb2lkAzgxZDk4OTAwOTg0YjM5MjI3YzNjNWUxM2FlZDNlMWE2BGdwb3MDNDMEaXQDYmluZw--?back=https%3A%2F%2Fin.images.search.yahoo.com%2Fsearch%2Fimages%3Fp%3Dlogo%2Brelated%2Bto%2Beat%2Bfit%26type%3DE211IN714G0%26fr%3Dmcafee%26fr2%3Dpiv-web%26tab%3Dorganic%26ri%3D43&w=1500&h=1500&imgurl=lookaside.fbsbx.com%2Flookaside%2Fcrawler%2Fmedia%2F%3Fmedia_id%3D446612994160454&rurl=https%3A%2F%2Fwww.facebook.com%2Featfit.tn%2F&size=30.1KB&p=logo+related+to+eat+fit&oid=81d98900984b39227c3c5e13aed3e1a6&fr2=piv-web&fr=mcafee&tt=Eat%26Fit+%7C+La+Soukra&b=0&ni=21&no=43&ts=&tab=organic&sigr=G3DLv4dOu9AK&sigb=4TgQcvssawc4&sigi=KKE2SVS4Lk6G&sigt=5K3conZGF2fP&.crumb=oVioWVyBe.y&fr=mcafee&fr2=piv-web&type=E211IN714G0`
     // return(
     //     <>
@@ -63,9 +65,11 @@ const Header=()=>{
         // Array
     }
     return(
-        <div className={!isOnline?"sticky top-0":""}>
+        // <div className={!isOnline?"sticky top-0":""}>
+        <div className={`${location?.pathname.includes("about")?"sticky top-0":""} ${!isOnline?"sticky top-0":""}`}>
         <div className="box-border">
-            <nav className={darkTheme?"flex justify-around  p-3 items-center  darkHeader":"flex justify-around  p-3 items-center bg-slate-300"}>
+            {/* <nav className={darkTheme?"flex justify-around  p-3 items-center  darkHeader":"flex justify-around  p-3 items-center bg-slate-300"}> */}
+            <nav className={`${darkTheme?"flex justify-around  p-3 items-center  darkHeader":"flex justify-around  p-3 items-center bg-slate-300"} `}>
                 <ul className="d-flex">
                     <span>{isOnline?"🟢":"🔴"}</span>
                     <li>eatfit</li>
