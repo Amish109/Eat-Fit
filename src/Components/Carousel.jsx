@@ -73,17 +73,22 @@ const Carousel=()=>{
         <div className="d-flex pb-3 mb-2 flex-wrap justify-content-center">
         {
          tempdata.map((element,index)=>{
+             let {searchParams} = new URL(element.action.link);
+             let collection_id = searchParams.get("collection_id");
+             let tags = searchParams.get("tags");
+             console.log("element.entityId",collection_id+"_"+tags);
             // alert("data")
             //    if(index<Math.floor(window.screen.width/150)-1) {
+            //80355-layout_CCS_Pastry
                 return (
+                        // <div className="CarouslDiv " style={{width:"150px",}} key={element.imageId}>
+                        //     <img src={HostUrl+element.imageId} className=" " style={{width:"100%"}}/>
+                        // </div>
+                    <Link to={`/carausalData/${collection_id+"-"+tags}`} key={element.imageId}>
                         <div className="CarouslDiv " style={{width:"150px",}} key={element.imageId}>
                             <img src={HostUrl+element.imageId} className=" " style={{width:"100%"}}/>
                         </div>
-                    // <Link to={`/carausalData/${element.entityId.split("?")[1].split("&")[0].split("=")[1]+"-"+element.entityId.split("?")[1].split("&")[1].split("=")[1]}`}>
-                    //     <div className="CarouslDiv " style={{width:"150px",}} key={element.imageId}>
-                    //         <img src={HostUrl+element.imageId} className=" " style={{width:"100%"}}/>
-                    //     </div>
-                    // </Link>
+                    </Link>
                    )
             //    }
             })
