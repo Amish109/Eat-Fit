@@ -1,8 +1,11 @@
 import { useEffect, useRef } from "react";
 import MenuSection from "./MenuSection";
+import { useDispatch } from "react-redux";
+import { addItem } from "../utils/cartSlice";
 
 const NestedMenu = ({category,index,showNested ,showData,setShowNested ,fromShimmerMenu}) => {
     const nestedDivRef = useRef();
+    const dispatch = useDispatch();
     // useEffect(()=>{
     //     if(index!=showNested){
     //         return
@@ -15,6 +18,9 @@ const NestedMenu = ({category,index,showNested ,showData,setShowNested ,fromShim
     //       behavior: 'smooth'
     //     });
     // })
+    const handleAddToCart =(data)=>{
+        dispatch(addItem(data));
+    }
   return (
     <div name={`NestedMenuDiv_${index}`} id={`NestedMenuDiv_${index}`} key={index} ref={nestedDivRef} >
         <a href={`#NestedMenuDiv_${index}`} className="text-decoration-none text-dark">
@@ -40,7 +46,7 @@ const NestedMenu = ({category,index,showNested ,showData,setShowNested ,fromShim
                         avgRating={dish?.card?.info?.ratings?.aggregatedRating?.rating} 
                         ratingCount={dish?.card?.info?.ratings?.aggregatedRating?.ratingCount} 
                         description={dish?.card?.info?.description} 
-                        imgUrl={dish?.card?.info?.imageId}    />
+                        imgUrl={dish?.card?.info?.imageId}  handleAddToCart={()=>handleAddToCart(dish)}  />
                         <hr />
                         </>
                     )

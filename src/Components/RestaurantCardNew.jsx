@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom"
 import { HostUrl } from "../constants/restaurants"
 const Restaurantcard=({areaName,avgRating,cuisines,name,sla,cloudinaryImageId,id})=>{
+    console.log("cuisines",cuisines);
     //imageURL , title,starRating,deliveryTime,cuisine,address
     return(
         <Link to={`/menu/${id}`} className="text-dark text-decoration-none">
@@ -10,8 +11,8 @@ const Restaurantcard=({areaName,avgRating,cuisines,name,sla,cloudinaryImageId,id
             </div>
             <div className="content mt-2">
                 <h4 className="">{name}</h4>
-                <div className="d-flex justify-content-between"><span>⭐{avgRating}</span> <span>{sla.deliveryTime} mins</span></div>
-                <div className="cuisines" style={{whiteSpace:"nowrap",overflow:"hidden",textOverflow:"ellipsis"}}title={cuisines.join(",")}>{cuisines.join(",")}</div>
+                <div className="d-flex justify-content-between"><span>⭐{avgRating}</span> <span>{sla?.deliveryTime} mins</span></div>
+                <div className="cuisines" style={{whiteSpace:"nowrap",overflow:"hidden",textOverflow:"ellipsis"}}title={cuisines&&cuisines.join(",")}>{cuisines&&cuisines.join(",")}</div>
                 <p>{areaName}</p>
             </div>
         </div>

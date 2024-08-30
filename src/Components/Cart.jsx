@@ -12,7 +12,7 @@ const Cart = () => {
     )
   }
   return (
-    <div className='min-h-screen'>
+    <div className='min-h-screen mwnu_container py-4'>
       {
         data.map((dish,index)=>{
           return <MenuSection 

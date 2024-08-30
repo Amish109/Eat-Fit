@@ -61,9 +61,10 @@ const CardContainer = () => {
 // New
 if(error){
   return(
-    <div className="min-h-screen">
-      <h1 style={{color:"red",height:"50.66dvh"}}>Something Went Wrong..</h1>
-    </div>
+    <div className="d-flex justify-content-center align-items-center" style={{height:"57vh"}}>
+    {/* <h1 style={{color:"red",height:"50.66dvh"}}>Something Went Wrong..</h1> */}
+    <h1 style={{color:"red",height:"100%"}}className="d-flex justify-content-center align-items-center">Something Went Wrong..</h1>
+  </div>
   )
 }
   return (

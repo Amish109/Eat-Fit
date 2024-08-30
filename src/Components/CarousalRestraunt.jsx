@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import useOnline from '../CustomHooks/useOnline';
+import Restaurantcard from './RestaurantCardNew';
 
 const CarousalRestraunt = () => {
     const {caraousalId} = useParams();
@@ -26,7 +27,12 @@ const CarousalRestraunt = () => {
                  
                   const data =await response.json();
                   console.log("response from Carousal Data",data);
-                  setRestraunts(data?.data?.cards[10]);
+                  // setRestraunts(data.data.cards.slice(3));
+                  setRestraunts(data.data.cards);
+                  // debugger
+                  // console.log("data?.data?.cards.slice(3)",data?.data?.cards)
+                  console.log("data?.data?.cards.slice(3)",data.data.cards.slice(3))
+                  
                 }
               } catch (error) {
                 setError(true);
@@ -37,14 +43,27 @@ const CarousalRestraunt = () => {
 
     if(error){
         return(
-          <div className="min-h-screen">
-            <h1 style={{color:"red",height:"50.66dvh"}}>Something Went Wrong..</h1>
+          <div className="d-flex justify-content-center align-items-center" style={{height:"50vh"}}>
+            {/* <h1 style={{color:"red",height:"50.66dvh"}}>Something Went Wrong..</h1> */}
+            <h1 style={{color:"red",height:"100%"}}>Something Went Wrong..</h1>
           </div>
         )
       }
   return (
-    <div>
-      
+    <div className='container py-5 min-h-screen'>
+      <h1>{restraunts[0]?.card?.card?.title}</h1>
+      <p>{restraunts[0]?.card?.card?.description}</p>
+      <p className='fw-bold'>{restraunts[2]?.card?.card?.gridElements?.infoWithStyle?.text}</p>
+      <div id='restraunts' className='d-flex flex-wrap justify-content-center align-items-center gap-2'>
+        {
+          restraunts.slice(3).map((restaurant,index)=>{
+            return(
+              <Restaurantcard key={restaurant?.card?.card?.info?.id} {...restaurant?.card?.card?.info}/>
+            )
+          })
+        }
+
+      </div>
     </div>
   )
 }
