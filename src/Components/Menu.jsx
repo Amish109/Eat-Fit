@@ -37,7 +37,7 @@ const Menu=()=>{
 //     },[])
     console.log(id);
     // if(loading ){
-    if(menuData.length==0){
+    if(menuData&&menuData.length==0){
     // if(menuData.length>=0){
         return <div className="d-flex justify-content-center gap-4 flex-wrap" >
             {/* <Shimmer/> */}
